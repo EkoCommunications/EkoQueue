@@ -28,18 +28,19 @@ The queue dispatcher has a single method to dispatch jobs. The dispatch method t
 
 ### Examples
 
-  const EkoQueue = require('eko-queue')({});
-  const dispatcher = Queue.dispatcher();
+```javascript
+const EkoQueue = require('eko-queue')({});
+const dispatcher = Queue.dispatcher();
 
-  // Using additional parameters to pass through to the handle method
-  dispatcher.dispatch('email-user', 'andrew@ekoapp.com', 'Welcome Back!');
+// Using additional parameters to pass through to the handle method
+dispatcher.dispatch('email-user', 'andrew@ekoapp.com', 'Welcome Back!');
 
-  // Or you can just send an object through with your parameters
-  dispatcher.dispatch('email-user', {
-    email: 'andrew@ekoapp.com',
-    subject: 'Welcome Back!',
-  });
-
+// Or you can just send an object through with your parameters
+dispatcher.dispatch('email-user', {
+  email: 'andrew@ekoapp.com',
+  subject: 'Welcome Back!',
+});
+```
 
 ## Processing jobs
 
@@ -52,14 +53,16 @@ The queue processor has two (2) methods to process jobs. You can process a singl
 
 ### Examples
 
-  const EkoQueue = require('eko-queue')({});
-  const processor = Queue.processor();
+```javascript
+const EkoQueue = require('eko-queue')({});
+const processor = Queue.processor();
 
-  // Process individual job
-  processor.process('email-user');
+// Process individual job
+processor.process('email-user');
 
-  // Process all jobs
-  processor.processAll();
+// Process all jobs
+processor.processAll();
+```
 
 ## Job classes
 
@@ -69,46 +72,47 @@ The job class require a `handle` and `failed` method that both accept optional p
 
 ### Example
 
-    'use strict';
+```javascript
+'use strict';
 
-    class EmailJob {
-      /**
-       * Number of jobs to run concurrently
-       * @return {number}
-       */
-      get concurrency() {
-        return 1;
-      }
+class EmailJob {
+  /**
+   * Number of jobs to run concurrently
+   * @return {number}
+   */
+  get concurrency() {
+    return 1;
+  }
 
-      /**
-       * Priority of job 10 is lowest, -10 is highest
-       * @return {number}
-       */
-      get priority() {
-        return 0;
-      }
+  /**
+   * Priority of job 10 is lowest, -10 is highest
+   * @return {number}
+   */
+  get priority() {
+    return 0;
+  }
 
-      /**
-       * Handle job
-       * @param {string} email
-       * @param {string} subject
-       */
-      * handle(email, subject) {
-        console.log(`Sending email to ${email} with the subject ${subject}`);
-      }
+  /**
+   * Handle job
+   * @param {string} email
+   * @param {string} subject
+   */
+  * handle(email, subject) {
+    console.log(`Sending email to ${email} with the subject ${subject}`);
+  }
 
-      /**
-       * Handle job failure
-       * @param {string} email
-       * @param {string} subject
-       */
-      * failed(email, subject) {
-        console.error(`Failed sending email to ${email} with the subject ${subject}`);
-      }
-    }
+  /**
+   * Handle job failure
+   * @param {string} email
+   * @param {string} subject
+   */
+  * failed(email, subject) {
+    console.error(`Failed sending email to ${email} with the subject ${subject}`);
+  }
+}
 
-    module.exports = EmailJob;
-
+module.exports = EmailJob;
+```
 
 ## Running examples
 
