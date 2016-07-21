@@ -30,13 +30,13 @@ The queue dispatcher has a single method to dispatch jobs. The dispatch method t
 
 ```javascript
 const EkoQueue = require('eko-queue')({});
-const dispatcher = Queue.dispatcher();
+const dispatcher = EkoQueue.dispatcher();
 
 // Using additional parameters to pass through to the handle method
-dispatcher.dispatch('email-user', 'andrew@ekoapp.com', 'Welcome Back!');
+dispatcher.dispatch('email', 'andrew@ekoapp.com', 'Welcome Back!');
 
 // Or you can just send an object through with your parameters
-dispatcher.dispatch('email-user', {
+dispatcher.dispatch('email', {
   email: 'andrew@ekoapp.com',
   subject: 'Welcome Back!',
 });
@@ -55,10 +55,10 @@ The queue processor has two (2) methods to process jobs. You can process a singl
 
 ```javascript
 const EkoQueue = require('eko-queue')({});
-const processor = Queue.processor();
+const processor = EkoQueue.processor();
 
 // Process individual job
-processor.process('email-user');
+processor.process('email');
 
 // Process all jobs
 processor.processAll();
