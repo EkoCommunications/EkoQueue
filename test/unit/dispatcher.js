@@ -5,7 +5,7 @@ const should = require('should');
 require('should-sinon');
 
 const path = require('path');
-const jobsPath = path.join(path.dirname(__filename), '..', '..', 'examples', 'jobs');
+const jobsPath = path.join(path.dirname(__filename), '..', 'test-jobs');
 const Dispatcher = require('../../lib/dispatcher');
 
 let queue;
