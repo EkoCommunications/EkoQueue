@@ -1,5 +1,5 @@
 const jobProvider = require('./job-provider');
-const Queue = require('../index')({ jobProvider });
+const Queue = require('../index')(jobProvider, {});
 const dispatcher = Queue.dispatcher();
 
 dispatcher.dispatch('email', 'andrew@ekoapp.com', 'Hello');

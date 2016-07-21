@@ -19,12 +19,20 @@ $ npm install eko-queue --save
 
 ## Configuration
 
-The queue module exposes a constructor function that accepts a hash of options.
+The queue module exposes a constructor function that accepts a **job provider** and a hash of options to connect to redis.
 
+* `jobProvider` (an object that exposes instances of jobs and optionally a job path for job classes)
 * `host` (host for redis server)
 * `port` (port for redis server)
 * `prefix` (prefix to use for queue's jobs)
-* `jobPath` (path to job classes)
+
+
+## Job provider
+
+The job provider is a simple object that allows you to easily compose your queue jobs with dependency injection as well as provide a path for job classes that don't rely on dependency injection.
+
+**Todo:** Show an example of job providers. For an example look inside the examples directory.
+
 
 ## Dispatching jobs
 
@@ -37,7 +45,7 @@ The queue dispatcher has a single method to dispatch jobs. The dispatch method t
 ### Examples
 
 ```javascript
-const EkoQueue = require('eko-queue')({});
+const EkoQueue = require('eko-queue')(jobProvider, {});
 const dispatcher = EkoQueue.dispatcher();
 
 // Using additional parameters to pass through to the handle method
@@ -62,7 +70,7 @@ The queue processor has two (2) methods to process jobs. You can process a singl
 ### Examples
 
 ```javascript
-const EkoQueue = require('eko-queue')({});
+const EkoQueue = require('eko-queue')(jobProvider, {});
 const processor = EkoQueue.processor();
 
 // Process individual job

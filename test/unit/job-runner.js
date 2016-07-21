@@ -39,7 +39,7 @@ describe('jobRunner', function () {
     });
 
     it('should not run any jobs if job provider has no jobPath', function (done) {
-      const instance = jobRunner('do-not-exist', {});
+      const instance = jobRunner('does-not-exist', {});
 
       done();
     });

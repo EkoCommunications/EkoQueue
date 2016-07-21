@@ -3,7 +3,7 @@ const kue = require('kue');
 const Processor = require('./lib/processor');
 const Dispatcher = require('./lib/dispatcher');
 
-module.exports = ({ prefix='ekoqueue', host='127.0.0.1', port=6379, jobProvider }) => {
+module.exports = (jobProvider, { prefix='ekoqueue', host='127.0.0.1', port=6379 }) => {
   const queue = kue.createQueue({ prefix, redis: { host, port } });
 
   const processor = () => {
