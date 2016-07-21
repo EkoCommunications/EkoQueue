@@ -10,7 +10,6 @@ module.exports = ({ prefix='ekoqueue', host='127.0.0.1', port=6379, jobsPath='jo
   process.once('SIGTERM', sig => {
     queue.shutdown(1000, error => {
       console.log('Queue shutdown: ', error || '');
-      process.exit(0);
     });
   });
 
