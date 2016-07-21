@@ -11,6 +11,12 @@ EkoQueue is meant to be fully scalable with no persistance on disk. The only dep
 * Node.js 6.*
 * Redis Server
 
+## Installation
+
+```
+$ npm install eko-queue --save
+```
+
 ## Configuration
 
 The queue module exposes a constructor function that accepts a hash of options.
