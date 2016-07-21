@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "server": "node server.js"
+    "server": "node server.js",
+    "lint": "./node_modules/.bin/jscs lib test examples index.js || true",
+    "fix": "./node_modules/.bin/jscs lib test examples index.js --fix || true"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "express": "^4.14.0",
+    "jscs": "^3.0.7",
     "kue-ui": "^0.1.0",
     "mocha": "^2.5.3",
     "should": "^10.0.0",

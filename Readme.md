@@ -113,9 +113,10 @@ class EmailJob {
 
 module.exports = EmailJob;
 ```
-## Running examples
+## Running tests, linter
 
-Run `npm test` to run the test suite
+* Run `npm test` to run the test suite
+* Run `npm run lint` to run the linter
 
 ## Running examples
 
