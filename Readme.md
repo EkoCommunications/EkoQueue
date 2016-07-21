@@ -1,6 +1,6 @@
 # EkoQueue
 
-[![Build Status](https://travis-ci.com/EkoCommunications/EkoQueue.svg?token=m49xQMKhxo2NwYhnzUk5&branch=master)](https://travis-ci.com/EkoCommunications/EkoQueue)
+[![Build Status](https://travis-ci.com/EkoCommunications/EkoQueue.svg?token=m49xQMKhxo2NwYhnzUk5&branch=master)](https://travis-ci.com/EkoCommunications/EkoQueue) [![Code Climate](https://codeclimate.com/github/EkoCommunications/EkoQueue/badges/gpa.svg)](https://codeclimate.com/github/EkoCommunications/EkoQueue) [![Test Coverage](https://codeclimate.com/github/EkoCommunications/EkoQueue/badges/coverage.svg)](https://codeclimate.com/github/EkoCommunications/EkoQueue/coverage)
 
 EkoQueue is a queue manager that allows you to easily dispatch and process jobs with an easy to use interface. EkoQueue wraps the excellent [kue.js](https://github.com/Automattic/kue) and also comes with a UI to monitor and manage the queue jobs.
 
