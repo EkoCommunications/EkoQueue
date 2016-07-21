@@ -18,6 +18,10 @@
   },
   "devDependencies": {
     "express": "^4.14.0",
-    "kue-ui": "^0.1.0"
+    "kue-ui": "^0.1.0",
+    "mocha": "^2.5.3",
+    "should": "^10.0.0",
+    "should-sinon": "0.0.5",
+    "sinon": "^1.17.4"
   }
 }
