@@ -5,7 +5,7 @@ const should = require('should');
 require('should-sinon');
 
 const path = require('path');
-const jobPath = path.join(path.dirname(__filename), '..', 'test-jobs');
+const jobProvider = require('../test-jobs/job-provider');
 const Processor = require('../../lib/processor');
 
 let queue;
@@ -41,7 +41,7 @@ describe('Processor', function () {
 
   describe('process', function () {
     it('should process a job from the queue', function (done) {
-      const processor = new Processor('q', queue, subscriber, jobPath);
+      const processor = new Processor('q', queue, subscriber, jobProvider);
       processor.process('email');
 
       queue.process.should.be.calledOnce().calledWith('email', 1);
@@ -50,7 +50,7 @@ describe('Processor', function () {
     });
 
     it('should not process a job from the queue if the file does not exist', function (done) {
-      const processor = new Processor('q', queue, subscriber, jobPath);
+      const processor = new Processor('q', queue, subscriber, jobProvider);
       processor.process('do-not-exist');
 
       queue.process.should.not.be.calledOnce();
@@ -59,7 +59,7 @@ describe('Processor', function () {
     });
 
     it('should not process if job already being processed', function (done) {
-      const processor = new Processor('q', queue, subscriber, jobPath);
+      const processor = new Processor('q', queue, subscriber, jobProvider);
       processor.processing.push('email');
       processor.process('email');
 
@@ -71,7 +71,7 @@ describe('Processor', function () {
 
   describe('processAll', function () {
     it('should process all jobs in the queue', function (done) {
-      const processor = new Processor('q', queue, subscriber, jobPath);
+      const processor = new Processor('q', queue, subscriber, jobProvider);
       processor.processAll();
 
       subscriber.subscribe.should.be.calledOnce().calledWith('q');
