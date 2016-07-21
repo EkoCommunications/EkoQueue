@@ -19,6 +19,7 @@ describe('Processor', function () {
      */
     queue = {
       process: (job, concurrency, cb) => cb({ type: job, data: 'data' }, function () {}),
+
       types: (cb) => cb(null, ['email']),
     };
 
