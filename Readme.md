@@ -86,6 +86,8 @@ The job classes are what the processor uses to process the job. Job classes must
 
 The job class require a `handle` and `failed` method that both accept optional parameters that will be passed from the dispatcher. The job classes can also contain optional `concurrency` and `priority` properties.
 
+The `handle` and `failed` methods also allow you to yield to promises so you can write your code in a more produral manner. You can yield to generators or promises.
+
 ### Example
 
 ```javascript
@@ -115,6 +117,7 @@ class EmailJob {
    */
   * handle(email, subject) {
     console.log(`Sending email to ${email} with the subject ${subject}`);
+  	const results = yield someEmailClient.send(email, subject, 'Hello from EkoQueue');
   }
 
   /**
