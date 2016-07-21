@@ -32,6 +32,12 @@ The queue module exposes a constructor function that accepts a **job provider** 
 
 The job provider is a simple object that allows you to easily compose your queue jobs with dependency injection as well as provide a path for job classes that don't rely on dependency injection.
 
+The job path must use the key `jobPath` and the keys of the initialized instances must match the name of the job in the dispatcher and processor.
+
+Look inside the `examples` directory for more examples.
+
+### Example
+
 ```javascript
 const path = require('path');
 const jobPath = path.join(path.dirname(__filename), 'jobs');
