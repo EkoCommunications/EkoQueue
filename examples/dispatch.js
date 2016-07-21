@@ -1,10 +1,10 @@
-const Queue = require('./index')({});
+const path = require('path');
+const jobsPath = path.join(path.dirname(__filename), 'jobs');
+const Queue = require('../index')({ jobsPath });
 const dispatcher = Queue.dispatcher();
 
 dispatcher.dispatch('email', 'andru.weir@gmail.com', 'Hello');
-dispatcher.dispatch('resize', '/path/to/image.jpeg', 100, 80);
-dispatcher.dispatch('message', { from: 'Andrew', to: 'Jason', body: 'Hey how are you?' });
 
 setInterval(() => {
-  dispatcher.dispatch('date', new Date);
+  dispatcher.dispatch('email', 'andru.weir@gmail.com', new Date);
 }, 5000);
