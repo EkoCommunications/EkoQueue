@@ -21,18 +21,63 @@ $ npm install eko-queue --save
 
 The queue module exposes a constructor function that accepts a **job provider** and a hash of options to connect to redis.
 
-* `jobProvider` (an object that exposes instances of jobs and optionally a job path for job classes)
-* `host` (host for redis server)
-* `port` (port for redis server)
-* `prefix` (prefix to use for queue's jobs)
+* **jobProvider** (an object that exposes instances of jobs and optionally a job path for job classes)
+* **options** (object/hash of configuration options for redis)
+	* host (host for redis server)
+	* port (port for redis server)
+	* prefix (prefix to use for queue's jobs)
 
 
 ## Job provider
 
 The job provider is a simple object that allows you to easily compose your queue jobs with dependency injection as well as provide a path for job classes that don't rely on dependency injection.
 
-**Todo:** Show an example of job providers. For an example look inside the examples directory.
+```javascript
+const path = require('path');
+const jobPath = path.join(path.dirname(__filename), 'jobs');
 
+const Email = require('./services/email');
+const EmailJob = require('./jobs/email-service-job');
+
+/**
+ * Wrap email job in function to inject dependencies.
+ * These functions themselves cannot have any dependencies.
+ * @return {EmailJob}
+ */
+const emailJob = () => {
+  /**
+   * Simulating instance of email client that sends email
+   * @type {Object}
+   */
+  const emailClient = {
+    send: (address, subject, body, callback) => {
+      callback(null, `Email sent to ${address}`);
+    },
+  };
+
+  /**
+   * Email service
+   * @type {Email}
+   */
+  const emailService = new Email(emailClient);
+
+  /**
+   * Finally instantiate and return email job with email service injected
+   */
+  return new EmailJob(emailService);
+};
+
+/**
+ * Export the jobPath for job classes that require no dependency injection
+ * and then export the jobs that have been initialized by their job name
+ * @type {Object}
+ */
+module.exports = {
+  jobPath,
+  'email-service': emailJob(),
+};
+
+```
 
 ## Dispatching jobs
 
