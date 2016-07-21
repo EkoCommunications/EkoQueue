@@ -113,6 +113,9 @@ class EmailJob {
 
 module.exports = EmailJob;
 ```
+## Running examples
+
+Run `npm test` to run the test suite
 
 ## Running examples
 

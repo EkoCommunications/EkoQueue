@@ -4,6 +4,7 @@
   "description": "Eko queue dispatcher",
   "main": "index.js",
   "scripts": {
+    "test": "./node_modules/.bin/mocha",
     "server": "node server.js"
   },
   "author": "",
