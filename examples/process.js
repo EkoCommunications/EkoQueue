@@ -1,6 +1,7 @@
 const path = require('path');
-const jobsPath = path.join(path.dirname(__filename), 'jobs');
-const Queue = require('../index')({ jobsPath });
+const jobPath = path.join(path.dirname(__filename), 'jobs');
+const jobProvider = require('./job-provider');
+const Queue = require('../index')({ jobPath });
 const processor = Queue.processor();
 
 processor.processAll();

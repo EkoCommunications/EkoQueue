@@ -5,7 +5,7 @@ const should = require('should');
 require('should-sinon');
 
 const path = require('path');
-const jobsPath = path.join(path.dirname(__filename), '..', 'test-jobs');
+const jobPath = path.join(path.dirname(__filename), '..', 'test-jobs');
 const Dispatcher = require('../../lib/dispatcher');
 
 let queue;
@@ -33,7 +33,7 @@ describe('Dispatcher', function () {
 
   describe('dispatch', function () {
     it('should dispatch a job to the queue', function (done) {
-      const dispatcher = new Dispatcher('q', queue, publisher, jobsPath);
+      const dispatcher = new Dispatcher('q', queue, publisher, jobPath);
       dispatcher.dispatch('email', 'andrew@ekoapp.com');
 
       queue.create.should.be.calledOnce().calledWith('email', ['andrew@ekoapp.com']);
@@ -46,7 +46,7 @@ describe('Dispatcher', function () {
     });
 
     it('should not dispatch if job file not found', function (done) {
-      const dispatcher = new Dispatcher('q', queue, publisher, jobsPath);
+      const dispatcher = new Dispatcher('q', queue, publisher, jobPath);
       dispatcher.dispatch('do-not-exist', 'andrew@ekoapp.com');
 
       queue.create.should.not.be.calledOnce();

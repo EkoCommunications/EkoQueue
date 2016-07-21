@@ -1,7 +1,7 @@
 {
   "name": "eko-queue",
   "author": "Andrew Weir <andrew@ekoapp.com>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "EkoQueue is a queue manager that allows you to easily dispatch and process jobs with an easy to use interface.",
   "main": "index.js",
   "scripts": {

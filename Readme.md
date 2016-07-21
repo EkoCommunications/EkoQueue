@@ -24,7 +24,7 @@ The queue module exposes a constructor function that accepts a hash of options.
 * `host` (host for redis server)
 * `port` (port for redis server)
 * `prefix` (prefix to use for queue's jobs)
-* `jobsPath` (path to job classes)
+* `jobPath` (path to job classes)
 
 ## Dispatching jobs
 
