@@ -1,5 +1,7 @@
 # EkoQueue
 
+[![Build Status](https://travis-ci.com/EkoCommunications/EkoQueue.svg?token=m49xQMKhxo2NwYhnzUk5&branch=master)](https://travis-ci.com/EkoCommunications/EkoQueue)
+
 EkoQueue is a queue manager that allows you to easily dispatch and process jobs with an easy to use interface. EkoQueue wraps the excellent [kue.js](https://github.com/Automattic/kue) and also comes with a UI to monitor and manage the queue jobs.
 
 EkoQueue is meant to be fully scalable with no persistance on disk. The only dependency is a Redis server.
