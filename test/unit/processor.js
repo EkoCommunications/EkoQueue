@@ -18,16 +18,22 @@ describe('Processor', function () {
      * Mock Queue
      */
     queue = {
-      process: sinon.stub().returnsThis(),
+      process: (job, concurrency, cb) => cb({ type: job, data: 'data' }, function () {}),
+      types: (cb) => cb(null, ['email']),
     };
+
+    sinon.spy(queue, 'process');
+    sinon.spy(queue, 'types');
 
     /**
      * Subscriber Mock
      */
     subscriber = {
       subscribe: sinon.stub(),
-      on: sinon.stub(),
+      on: (message, cb) => cb('q', 'email'),
     };
+
+    sinon.spy(subscriber, 'on');
 
     done();
   });
@@ -61,4 +67,17 @@ describe('Processor', function () {
       done();
     });
   });
+
+  describe('processAll', function () {
+    it('should process all jobs in the queue', function (done) {
+      const processor = new Processor('q', queue, subscriber, jobsPath);
+      processor.processAll();
+
+      subscriber.subscribe.should.be.calledOnce().calledWith('q');
+      subscriber.on.should.be.calledOnce().calledWith();
+
+      done();
+    });
+  });
+
 });
