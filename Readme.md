@@ -36,7 +36,18 @@ The job path must use the key `jobPath` and the keys of the initialized instance
 
 Look inside the `examples` directory for more examples.
 
-### Example
+### Examples
+
+A job provider can be as simple as returning an object with a `jobPath` key as below.
+
+```javascript
+const path = require('path');
+const jobPath = path.join(path.dirname(__filename), 'jobs');
+
+module.exports = { jobPath };
+```
+
+Or it can contain a mixture of the `jobPath` and depencency injected instances of job classes as seen below.
 
 ```javascript
 const path = require('path');
