@@ -19,8 +19,8 @@ describe('Processor', function () {
      */
     queue = {
       process: (job, concurrency, cb) => cb({ type: job, data: 'data' }, function () {}),
-
       types: (cb) => cb(null, ['email']),
+      on: (type, cb) => cb('id', { result: 'the result' }),
     };
 
     sinon.spy(queue, 'process');
